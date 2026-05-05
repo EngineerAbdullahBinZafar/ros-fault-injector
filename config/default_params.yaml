@@ -1,0 +1,9 @@
+chaos_monkey:
+  ros__parameters:
+    input_topic: "/odom"
+    output_topic: "/odom_delayed"
+    msg_type: "Pose"
+    fault_type: "delay"
+    delay_ms: 250
+    drop_probability: 0.05
+    noise_std_dev: 0.02
