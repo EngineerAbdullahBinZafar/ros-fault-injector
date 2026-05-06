@@ -3,6 +3,8 @@
 # 💥 ROS Fault Injector
 **Chaos Engineering for Robotics — Battle-Test Your ROS2 Stack Before the Field Does**
 
+<img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMDBia2R0OXA5N2YxbmZ4Ynd4Ynd4Ynd4Ynd4Ynd4Ynd4Ynd4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1n/3o7TKDkDbIDJieKbVm/giphy.gif" width="100%" />
+
 [![CI Status](https://img.shields.io/github/actions/workflow/status/EngineerAbdullahBinZafar/ros-fault-injector/ci.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=white)](https://github.com/EngineerAbdullahBinZafar/ros-fault-injector/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 [![ROS2: Humble](https://img.shields.io/badge/ROS2-Humble-22314E.svg?style=for-the-badge&logo=ros&logoColor=white)](https://docs.ros.org/en/humble/index.html)
