@@ -1,0 +1,41 @@
+# ROS Fault Injector — Full Context Specification
+
+> Chaos Engineering Middleware for ROS 2 Autonomous Robotics.
+
+## 1. System Overview
+`ros-fault-injector` provides controlled, reproducible fault injection into active ROS 2 middleware graphs. By inserting an inline degradation node between sensor publishers and control subscribers, engineers can validate navigation resilience, state estimation recovery, and safety watchdogs prior to field deployment.
+
+Supported Message Types:
+- `geometry_msgs/msg/Pose`
+- `geometry_msgs/msg/Twist`
+- `sensor_msgs/msg/LaserScan`
+- `sensor_msgs/msg/Imu`
+- `std_msgs/msg/String`
+
+## 2. Fault Strategies
+1. **Packet Dropping (`fault_type:=drop`):**
+   Evaluates independent Bernoulli trial per packet with drop probability $p_{\text{drop}} \in [0, 1]$.
+   Poisson packet drop model:
+   $$P(K = k; \Delta t) = \frac{(\lambda_{\text{drop}} \Delta t)^k e^{-\lambda_{\text{drop}} \Delta t}}{k!}, \quad \lambda_{\text{drop}} = f_s \cdot p_{\text{drop}}$$
+
+2. **Latency Injection (`fault_type:=delay`):**
+   Queues incoming messages in an in-memory queue with scheduled nanosecond release time:
+   $$t_{\text{release}} = t_{\text{current}} + \Delta t_{\text{delay}}$$
+   Drained at 100Hz using a non-blocking ROS 2 timer.
+
+3. **Sensor Noise Injection (`fault_type:=noise`):**
+   - **Linear & Angular Rates:** Additive White Gaussian Noise $\boldsymbol{\eta} \sim \mathcal{N}(\mathbf{0}, \sigma^2 \mathbf{I})$.
+   - **LaserScan:** Range perturbation bounded by $[r_{\min}, r_{\max}]$ with salt & pepper impulse noise.
+   - **Quaternions:** Tangent space perturbation on $\mathfrak{so}(3)$ mapped through the exponential map and projected back onto $S^3$:
+     $$\mathbf{q}_{\text{norm}} = \frac{\tilde{\mathbf{q}}}{\|\tilde{\mathbf{q}}\|_2}$$
+
+## 3. Reliability & Hazard Rate Formulations
+- **Reliability Function:** $R(t) = \exp\left( -\int_0^t \lambda(\tau) d\tau \right)$
+- **Useful Life MTBF:** $\text{MTBF} = \frac{1}{\lambda_0}$
+- **Operational Availability:** $A = \frac{\text{MTBF}}{\text{MTBF} + \text{MTTR}} = \frac{\mu}{\lambda_0 + \mu}$
+
+## 4. Verification Commands
+```bash
+pytest test/ -v
+```
+All 3 tests pass validating message type resolution, quaternion normalization, and LaserScan range clamping.

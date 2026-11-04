@@ -1,0 +1,27 @@
+# ROS Fault Injector
+
+> Chaos engineering framework for ROS 2 robotics systems, injecting deterministic and stochastic latency, Poisson packet drops, 6-DOF IMU Gaussian noise, and Lie algebra $S^3$ manifold perturbations into live ROS 2 message streams.
+
+## Documentation
+- [Architecture & Overview](README.md): Chaos engineering principles, node architecture, supported message types, and RViz2 plotting workflows.
+- [Node Implementation](ros_fault_injector/injector_node.py): Core ROS 2 lifecycle node implementing parameter callbacks, delay queues, and sensor perturbation models.
+- [Configuration Profiles](config/default_params.yaml): Standard parameter configurations for latency, loss probability, and noise standard deviations.
+
+## Architecture & Core Modules
+- [Probabilistic Message Dropper](ros_fault_injector/injector_node.py#L88): Independent Bernoulli and continuous Poisson drop distribution models.
+- [ROS 2 Timer Delay Queue](ros_fault_injector/injector_node.py#L94): Thread-safe non-blocking timestamp queue operating at 100Hz tick frequency.
+- [Multi-Domain Noise Injector](ros_fault_injector/injector_node.py#L112): Gaussian noise injection for Pose, Twist, LaserScan, and 6-DOF Imu messages.
+- [Quaternion Manifold Preservation](ros_fault_injector/injector_node.py#L123): Normalization ensuring attitude quaternions remain constrained to the unit 3-sphere $S^3$.
+
+## APIs & Parameters
+- `input_topic` (string): Live input topic name to intercept.
+- `output_topic` (string): Intercepted output topic with injected faults.
+- `fault_type` (string): Mode selection (`delay`, `drop`, `noise`, `corrupt`).
+- `delay_ms` (integer): Millisecond latency applied to delayed frames.
+- `drop_probability` (float): Packet drop probability in range [0.0, 1.0].
+- `noise_std_dev` (float): Standard deviation $\sigma$ for additive Gaussian noise.
+- `salt_pepper_prob` (float): Impulse noise probability for LiDAR range arrays.
+
+## Optional
+- [Launch Scenarios](launch/example_fault.launch.py): Parametric launch file for simulating degraded network and noisy sensors.
+- [Verification Suite](test/test_injector_node.py): Automated test suite with mock ROS 2 interfaces validating pose jitter and laser scan range clamping.
