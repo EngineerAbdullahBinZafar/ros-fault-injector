@@ -15,6 +15,11 @@
 "If an autonomous robot has never been validated under controlled chaos, it has never truly been verified."
 ```
 
+```bash
+# ⚡ 1-Command Live Terminal Demonstration (Zero Dependencies)
+python demo.py
+```
+
 [Executive Overview](#-executive-overview) • [Mathematical Formulations](#-mathematical-formulations--reliability-models) • [Architecture](#-chaos-engineering-architecture) • [CLI & Parameters](#%EF%B8%8F-cli-usage--runtime-parameters) • [Scenarios](#-experimental-fault-scenarios) • [Verification](#-verification--empirical-test-suite)
 
 </div>
