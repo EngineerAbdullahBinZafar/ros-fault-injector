@@ -29,4 +29,4 @@ jobs:
         with:
           python-version: "3.10"
       - run: pip install pytest
-      - run: pytest test/ -v --tb=short 2>/dev/null || echo "No tests — skipping."
+      - run: python -m pytest test/ -v --tb=short

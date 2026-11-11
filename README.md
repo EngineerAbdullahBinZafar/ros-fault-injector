@@ -265,50 +265,6 @@ test/test_injector_node.py::test_laserscan_noise_injection PASSED        [100%]
 
 ---
 
-<details>
-<summary>📋 Machine-Readable Metadata (Schema.org JSON-LD)</summary>
-
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareSourceCode",
-  "name": "ros-fault-injector",
-  "version": "1.0.0",
-  "description": "Chaos engineering framework for ROS 2 robotics stacks, injecting deterministic and stochastic latency, Poisson message drops, 6-DOF IMU Gaussian noise, and quaternion Lie algebra perturbations.",
-  "author": {
-    "@type": "Person",
-    "name": "Engineer Abdullah Bin Zafar",
-    "email": "abz.king.1.9.2003@gmail.com",
-    "affiliation": {
-      "@type": "EducationalOrganization",
-      "name": "University of Engineering and Technology (UET) Lahore"
-    },
-    "sameAs": "https://github.com/EngineerAbdullahBinZafar"
-  },
-  "license": "https://opensource.org/licenses/MIT",
-  "codeRepository": "https://github.com/EngineerAbdullahBinZafar/ros-fault-injector",
-  "programmingLanguage": "Python",
-  "applicationCategory": "RoboticsChaosEngineering",
-  "operatingSystem": "Linux, macOS, Windows",
-  "keywords": [
-    "ros2",
-    "chaos-engineering",
-    "fault-injection",
-    "robotics-reliability",
-    "poisson-distribution",
-    "sensor-noise",
-    "imu-simulation",
-    "quaternion-normalization",
-    "humble",
-    "jazzy"
-  ]
-}
-```
-
-</details>
-
----
-
 ## 👨‍💻 Author & Engineering Credits
 **Engineer Abdullah Bin Zafar**  
 *Mechatronics & Control Systems Engineer | UET Lahore*  
